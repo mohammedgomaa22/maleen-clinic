@@ -16,8 +16,8 @@
     <!-- End google font -->
 
     <script>
-      
       function sendMessToWhatsapp() {
+        
         var params = {
           name: document.getElementById("name").value,
           phone: document.getElementById("phone").value,
@@ -27,39 +27,37 @@
           beautifying: document.getElementById("beautifying").value,
         };
         // ------------
-  
-  
-        service.addEventListener("change", () => {
-          service.value === "teeth" ? teeth.style.display = "block" : teeth.style.display = "none";
-          service.value === "leather" ? leather.style.display = "block" : leather.style.display = "none";
-          service.value === "beautifying" ? beautifying.style.display = "block" : beautifying.style.display = "none";
-        });
-        
-        if (service.value === "teeth" && service.value === "leather" && service.value === "beautifying") {
-          if (params.name != "" && params.phone != "" && params.teeth != "" && params.leather != "" && params.beautifying != "") {
-            var url = "https://wa.me/" + "+966502055577" + "?text="
-              + "أريد الاستفسار عن حجز موعد" + "%0a"
-              + "الاسم: " + params.name + "%0a"
-              + "رقم الهاتف: " + params.phone + "%0a"
-              + "الـخــدمــة: " + `${params.service == "teeth" ? "اسنان" : params.service == "leather" ? "جلدية" : params.service == "beautifying" ? "جراحة وتجميل" : null}` + "%0a"
-              + "نــوع الـخــدمــة: " + params.teeth + params.leather + params.beautifying + "%0a"
-            window.open(url, '_blank').focus();
+
+        if (params.name != "" && params.phone != "") {
+          if (service.value === "teeth" || service.value === "leather" || service.value === "beautifying") {
+            if (service.value === "teeth") {
+              params.teeth != "- اختــر خــدمـة الاسـنــان -" ? sendData("الاسنان"): alert("يجب اختيار نوع الفحص");
+            } if (service.value === "leather") {
+              params.leather != "- اختــر خــدمـة الجلدية -" ? sendData("جلدية"): alert("يجب اختيار نوع الفحص");
+            } if (service.value === "beautifying") {
+              params.beautifying != "- اختــر خــدمـة التجميل -" ? sendData("جراحة وتجميل"): alert("يجب اختيار نوع الفحص");
+            }
           } else {
-            alert("يجب ملئ جميع البيانات");
+            sendData("لم يتم اختيار الخدمة");
           }
         } else {
-          if (params.name != "" && params.phone != "") {
-            var url = "https://wa.me/" + "+966502055577" + "?text="
-              + "أريد الاستفسار عن حجز موعد" + "%0a"
-              + "الاسم: " + params.name + "%0a"
-              + "رقم الهاتف: " + params.phone + "%0a"
-              + "الـخــدمــة: " + `${params.service == "teeth" ? "اسنان" : params.service == "leather" ? "جلدية" : params.service == "beautifying" ? "جراحة وتجميل" : null}` + "%0a"
-              + "نــوع الـخــدمــة: " + params.teeth + params.leather + params.beautifying + "%0a"
-            window.open(url, '_blank').focus();
-          } else {
-            alert("يجب ملئ جميع البيانات");
+            alert("يجب ادخال الاسم ورقم الهاتف");
           }
-        }
+          
+        function sendData(serviceF) {
+          let typeSer = "لم يتم اختيار نوع الخدمة";
+          serviceF == "الاسنان" ? typeSer = params.teeth : serviceF == "جلدية" ? typeSer = params.leather : serviceF == "جراحة وتجميل" ? typeSer = params.beautifying : typeSer;
+
+          var url = "https://wa.me/" + "+966502055577" + "?text="
+            + "أريد الاستفسار عن حجز موعد" + "%0a"
+            + "الاسم: " + params.name + "%0a"
+            + "رقم الهاتف: " + params.phone + "%0a"
+            + "الـخــدمــة: " + serviceF + "%0a"
+            + "نــوع الـخــدمــة: " + typeSer + "%0a"
+            window.open(url, '_blank').focus();
+            alert("شكراً لك سيتم الرد عليك في اقرب وقت")
+        };
+
       };
     </script>
 

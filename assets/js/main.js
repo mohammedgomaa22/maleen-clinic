@@ -123,83 +123,27 @@ var swiperBeforeAfter = new Swiper(".beforeAfterSwiper", {
     });
     // ***************************************************
     
+
+function chooseServices() {
     
-// function sendMessToWhatsapp() {
-//     let params = {
-//         name: document.getElementById("name").value,
-//         phone: document.getElementById("phone").value,
-//         service: document.getElementById("service").value,
-//         teeth: document.getElementById("teeth").value,
-//         leather: document.getElementById("leather").value,
-//         beautifying: document.getElementById("beautifying").value,
-//     };
-//     // ------------
+    let params = {
+        service: document.getElementById("service").value,
+        teeth: document.getElementById("teeth").value,
+        leather: document.getElementById("leather").value,
+        beautifying: document.getElementById("beautifying").value,
+    };
+    // ------------
 
 
-//     service.addEventListener("change", () => {
+    service.addEventListener("change", () => {
 
-//         params.service === "teeth" ? teeth.style.display = "block" : teeth.style.display = "none";
-//         params.service === "leather" ? leather.style.display = "block" : leather.style.display = "none";
-//         params.service === "beautifying" ? beautifying.style.display = "block" : beautifying.style.display = "none";
+        service.value === "teeth" ? teeth.style.display = "block" : teeth.style.display = "none";
+        service.value === "leather" ? leather.style.display = "block" : leather.style.display = "none";
+        service.value === "beautifying" ? beautifying.style.display = "block" : beautifying.style.display = "none";
 
-//     });
-
-//     if (params.service === "teeth" && params.service === "leather" && params.service === "beautifying") {
-
-//         if (params.name != "" && params.phone != "" && params.teeth != "" && params.leather != "" && params.beautifying != "") {
-            
-//             var url = "https://wa.me/" + "+966502055577" + "?text="
-            
-//             + "أريد الاستفسار عن حجز موعد" + "%0a"
-//             + "الاسم: " + params.name + "%0a"
-//             + "رقم الهاتف: " + params.phone + "%0a"
-                
-//             window.open(url, '_blank').focus();
-//         } else {
-//             alert("يجب ملئ جميع البيانات");
-//         }
-        
-//     } else {
-        
-//         if (params.name != "" && params.phone != "") {
-            
-//             var url = "https://wa.me/" + "+966502055577" + "?text="
-            
-//             + "أريد الاستفسار عن حجز موعد" + "%0a"
-//             + "الاسم: " + params.name + "%0a"
-//             + "رقم الهاتف: " + params.phone + "%0a"
-                
-//             window.open(url, '_blank').focus();
-//         } else {
-//             alert("يجب ملئ جميع البيانات");
-//         }
-//     }
-
-// };
-
-// function chooseServices() {
-    
-//     let params = {
-//         name: document.getElementById("name").value,
-//         phone: document.getElementById("phone").value,
-//         service: document.getElementById("service").value,
-//         teeth: document.getElementById("teeth").value,
-//         leather: document.getElementById("leather").value,
-//         beautifying: document.getElementById("beautifying").value,
-//     };
-//     // ------------
-
-
-//     service.addEventListener("change", () => {
-
-//         service.value === "teeth" ? teeth.style.display = "block" : teeth.style.display = "none";
-//         service.value === "leather" ? leather.style.display = "block" : leather.style.display = "none";
-//         service.value === "beautifying" ? beautifying.style.display = "block" : beautifying.style.display = "none";
-
-//         console.log(service.value);
-//         });
+        });
     
 
-// }
-// chooseServices();
+}
+chooseServices();
 

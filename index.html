@@ -15,6 +15,16 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- End google font -->
 
+    <!-- ------------------- -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("eBGMkRM7Rf0MwRGwN");
+      })();
+    </script>
+    <!-- ------------------- -->
+
     <script>
       function sendMessToWhatsapp() {
         
@@ -22,6 +32,7 @@
           name: document.getElementById("name").value,
           phone: document.getElementById("phone").value,
           service: document.getElementById("service").value,
+          typeService: "",
           teeth: document.getElementById("teeth").value,
           leather: document.getElementById("leather").value,
           beautifying: document.getElementById("beautifying").value,
@@ -45,17 +56,32 @@
           }
           
         function sendData(serviceF) {
+
+
           let typeSer = "لم يتم اختيار نوع الخدمة";
           serviceF == "الاسنان" ? typeSer = params.teeth : serviceF == "جلدية" ? typeSer = params.leather : serviceF == "جراحة وتجميل" ? typeSer = params.beautifying : typeSer;
 
-          var url = "https://wa.me/" + "+966502055577" + "?text="
-            + "أريد الاستفسار عن حجز موعد" + "%0a"
-            + "الاسم: " + params.name + "%0a"
-            + "رقم الهاتف: " + params.phone + "%0a"
-            + "الـخــدمــة: " + serviceF + "%0a"
-            + "نــوع الـخــدمــة: " + typeSer + "%0a"
-            window.open(url, '_blank').focus();
-            alert("شكراً لك سيتم الرد عليك في اقرب وقت")
+          params.service = serviceF;
+          params.typeService = typeSer;
+
+          const serviceID = "service_i6329ee";
+          const templateID = "template_mhdx01k"
+          
+          document.getElementById("name").value = "";
+          document.getElementById("phone").value = "";
+          emailjs.send(serviceID, templateID, params).then((res) => {
+            alert("شكراً لك سيتم الرد عليك في اقرب وقت");
+          }).catch((err) => console.log(err));
+
+          // var url = "https://wa.me/" + "+966502055577" + "?text="
+          //   + "أريد الاستفسار عن حجز موعد" + "%0a"
+          //   + "الاسم: " + params.name + "%0a"
+          //   + "رقم الهاتف: " + params.phone + "%0a"
+          //   + "الـخــدمــة: " + serviceF + "%0a"
+          //   + "نــوع الـخــدمــة: " + typeSer + "%0a"
+          //   window.open(url, '_blank').focus();
+          //   alert("شكراً لك سيتم الرد عليك في اقرب وقت");
+
         };
 
       };
@@ -65,7 +91,7 @@
       !function (w, d, t) {
         w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e }, ttq.load = function (e, n) { var i = "https://analytics.tiktok.com/i18n/pixel/events.js"; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = i, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; var o = document.createElement("script"); o.type = "text/javascript", o.async = !0, o.src = i + "?sdkid=" + e + "&lib=" + t; var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(o, a) };
 
-        ttq.load('CO1J93RC77UCJOSK34MG');
+        ttq.load('CO4FQVBC77U088FU9PG0');
         ttq.page();
       }(window, document, 'ttq');
     </script>
@@ -73,6 +99,17 @@
   </head>
   <body>
     <div class="background-body h-screen w-full fixed top-0 left-0"></div>
+    <a href="https://wa.me/+966502055577" target="_blank"
+      class="whatsApp bg-primary rounded-full text-white font-semibold p-1 w-[200px] border flex items-center gap-3 fixed bottom-5 right-3 z-50">
+      <div
+        class="icon text-white text-2xl cursor-pointer bg-[#128c7e] duration-300 h-10 w-10 flex items-center justify-center rounded-full">
+        <i class="fab fa-whatsapp"></i>
+      </div>
+      <div class="text">
+        استشارة عبر الواتس
+      </div>
+    </a>
+
     
     <header class="min-h-screen bg-gradient-to-b from-gray-100 to-primary relative overflow-hidden">
       <div class="container">
